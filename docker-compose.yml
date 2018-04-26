@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.1'
 
 volumes:
   db_volume:
@@ -33,3 +33,9 @@ services :
       - 80:80
     links:
      - db
+
+  chromedriver:
+    container_name: 'chromedriver'
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"

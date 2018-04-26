@@ -1,10 +1,14 @@
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 from time import sleep
-from spider import *
+from .spider import *
 
 
 def crawl_webpage(page_url):
-    driver = webdriver.Chrome()
+    driver = webdriver.Remote(
+        command_executor='http://chromedriver:4444/wd/hub',
+        desired_capabilities=DesiredCapabilities.CHROME)
     driver.get(page_url)
     driver.find_element_by_xpath(JS_XPATH).click()
     sleep(CRAWLER_TIMEOUT)
