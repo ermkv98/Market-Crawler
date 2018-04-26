@@ -1,2 +1,0 @@
-SQLALCHEMY_DATABASE_URI = 'uri'
-SECRET_KEY = 'secret'
