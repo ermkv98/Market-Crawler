@@ -11,18 +11,13 @@ RUN apk update && \
     python3-dev \
     musl-dev \
     uwsgi-python3 \
-    chromium \
-    udev \
-    xvfb \
-    chromium-chromedriver \
     supervisor && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
     pip3 install -r /tmp/requirements.txt && \
     rm /etc/nginx/conf.d/default.conf && \
-    rm -r /root/.cache && \ 
-    chmod -R 777 /usr/lib/python3.6/site-packages/selenium/
+    rm -r /root/.cache
     
 COPY nginx.conf /etc/nginx/
 COPY flask-site-nginx.conf /etc/nginx/conf.d/

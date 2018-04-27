@@ -14,4 +14,5 @@ def crawl_webpage(page_url):
     sleep(CRAWLER_TIMEOUT)
     content = driver.find_element_by_xpath(CONTENT_XPATH).text
     content_header = driver.find_element_by_xpath(CONTENT_HEADER_XPATH).text
+    driver.close()
     return content, content_header

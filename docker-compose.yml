@@ -18,13 +18,6 @@ services :
     volumes:
       - db_volume:/var/lib/mysql
 
-  adminer:
-    container_name: 'adminer'
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-
   web:
     container_name: 'web'
     build: ./web

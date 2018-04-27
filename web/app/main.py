@@ -32,8 +32,8 @@ def get_id(app_url):
     return id_str
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/post', methods=['POST'])
+def index_post():
     if request.method == 'POST':
         json_data = request.get_json()
         app_url = json_data['url']
@@ -53,7 +53,12 @@ def index():
         response = jsonify({'name': meta.name,
                             'content': meta.content})
         return response
-    return render_template('index.html')
+
+
+@app.route('/', methods =['GET'])
+def index():
+    if request.method == 'GET':
+        return render_template('index.html')
 
 
 if __name__ == "__main__":

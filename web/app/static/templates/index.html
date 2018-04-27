@@ -5,6 +5,45 @@
     <title>PlayMarket Permissions Parser</title>
 </head>
 <body>
-
+<div style="margin-inside: 5%; max-height: 70%; max-width: 60%; margin: 20%;">
+    <row>
+        <form id="searchForm">
+            <input type="text" class="form-control" id="url" required style="max-width: 70%"/>
+            <input type="submit" class="btn btn-primary" onclick="return search();" value="Search"
+                   style="max-width: 30%"/>
+        </form>
+    </row>
+    <h2 id="name"></h2>
+    <h3 id="content"></h3>
+</div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script>
+    function search() {
+        let url = document.getElementById("url");
+        let response = document.getElementById("content");
+        let name = document.getElementById("name");
+        takeContent(url, response, name);
+
+        return false;
+    }
+
+    function takeContent(url, response, name) {
+        let urlJSON = JSON.stringify({
+            url: url.value
+        });
+        $.ajax({
+            type: "POST",
+            url: "/post",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: urlJSON
+        }).done(function (data) {
+            $("#name").text(data.name);
+            $("#content").text(data.content);
+        });
+    }
+</script>
 </html>
